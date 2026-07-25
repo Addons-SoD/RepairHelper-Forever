@@ -1,0 +1,38 @@
+﻿# ==========================
+# WoW AddOn .gitignore
+# ==========================
+
+# --- WoW runtime / saved data ---
+*.bak
+*.toc.bak
+*.lua.bak
+WTF/
+Cache/
+Logs/
+Screenshots/
+Errors/
+
+# --- OS generated files ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+._*
+
+# --- Archives (release zips, etc.) ---
+*.zip
+*.7z
+*.rar
+*.tar.gz
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Build / packaging artifacts ---
+.build/
+release/
+dist/
