@@ -1,4 +1,4 @@
-﻿## Interface: 11508, 11509
+## Interface: 16001
 ## Title: RepairHelper
 ## Title-zhCN: 修理助手
 ## Title-zhTW: 修理助手
@@ -6,7 +6,7 @@
 ## Notes-zhCN: |cff00ff00RepairHelper|r|n|cffbc8f8f访问可修理的商人时自动帮助你修理破损的装备。|r
 ## Notes-zhTW: |cff00ff00RepairHelper|r|n|cffbc8f8f訪問可修理的商人時自動幫助你修理破損的裝備。|r
 ## Author: BigFoot (standalone extraction)
-## Version: 1.0.0-standalone
+## Version: 1.0.0-forever
 ## SavedVariables: RepairHelperSV
 ## X-Category: Inventory
 

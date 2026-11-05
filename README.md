@@ -1,8 +1,10 @@
-﻿# RepairHelper
+# RepairHelper
 
-A lightweight World of Warcraft (Classic Era) addon that automatically repairs all equipped items when you visit a merchant capable of repairing.
+A lightweight World of Warcraft addon that automatically repairs all equipped items when you visit a merchant capable of repairing.
 
 Originally extracted and cleaned up from the BigFoot addon suite's `RepairHelper` module, this standalone version removes all BigFoot dependencies and adds persistent settings with in-game slash commands.
+
+This branch targets **World of Warcraft: Forever** (`wowf`, client 1.60.1, TOC Interface `16001`, modern Mainline API ~12.1.5).
 
 ## Features
 
@@ -34,16 +36,25 @@ On first login the addon is **enabled** with guild-bank and self-fallback option
 ## Installation
 
 1. Download or clone this repository.
-2. Copy the `RepairHelper` folder into your WoW addon directory:
+2. Copy the `RepairHelper` folder into your WoW Forever addon directory:
    ```
-   World of Warcraft\_classic_era_\Interface\AddOns\RepairHelper\
+   World of Warcraft\_forever_\Interface\AddOns\RepairHelper\
    ```
 3. Enable **RepairHelper** in the in-game AddOns list at the character select screen.
 
 ## Compatibility
 
-- **Interface**: 11508, 11509 (Classic Era / Season of Discovery)
+- **Interface**: 16001 (World of Warcraft: Forever)
 - **Dependencies**: None
+
+### API notes for the Forever client
+
+- The removed globals (`GetSpellInfo`, `GetItemInfo`, `GetContainerItemInfo`, `GetContainerNumSlots`, `UnitAura*`, `GetSpellCooldown`, `GetSpellTexture`, …) are not used by this addon, so no `C_Spell` / `C_Item` / `C_Container` / `C_UnitAuras` rewrite is needed.
+- `CanMerchantRepair`, `GetRepairAllCost` and `RepairAllItems` are the only required calls; they are still available on modern Mainline.
+- `CanGuildBankRepair`, `GetGuildBankMoney` and `GetGuildBankWithdrawMoney` are probed at runtime — if a build drops them, repairs silently fall back to personal funds instead of erroring.
+- `MERCHANT_SHOW` is the primary trigger. `MERCHANT_UPDATE` is registered as a fallback (for custom merchant UIs) and `MERCHANT_CLOSED` resets the per-merchant guard, so a single merchant visit never repairs or reports twice.
+- If an addon file is loaded while already logged in, `IsLoggedIn()` handles the initialization so the addon never waits for a `PLAYER_LOGIN` that already fired.
+- No combat-log events and no player health/power/name reads, so the disabled combat log and the "secret values" restrictions do not affect this addon.
 
 ## License
 
